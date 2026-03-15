@@ -91,10 +91,10 @@ a{
 .notice-board{
   background:#fff;
   border-bottom:2px solid #e5e8ef;
-  border-left:5px solid #ef4444;
+  /* left accent is now on the LABEL, not the board — no mobile overflow */
   width:100%;
   box-sizing:border-box;
-  overflow:hidden;       /* clip the scrolling text */
+  overflow:hidden;
   position:relative;
   z-index:10;
 }
@@ -200,9 +200,13 @@ header{
   font-weight:800;font-size:1.35rem;color:var(--text);flex-shrink:0;
 }
 .logo-icon{
-  width:40px;height:40px;background:var(--blue);border-radius:10px;
+  width:42px;height:42px;background:var(--blue);border-radius:10px;
   display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:1rem;
+  color:#fff;font-size:1rem;overflow:hidden;flex-shrink:0;
+}
+/* when logo has an image instead of icon */
+.logo-icon img{
+  width:100%;height:100%;object-fit:cover;border-radius:10px;
 }
 .logo .blue{color:var(--blue)}
 
@@ -1221,11 +1225,22 @@ function setTitle(){
     `https://wa.me/${D.site.whatsapp_number}?text=Hello%20Dr.%20Bappa%2C%20I%20want%20to%20book%20an%20appointment.`;
 }
 
-/* ── LOGO HTML ── */
+/* ── LOGO HTML — supports image or icon ── */
 function logoHTML(size){
-  return `<div class="logo-icon" style="width:${size}px;height:${size}px;font-size:${size*.26}rem">
-    <i class="${D.site.logo.icon}"></i></div>
-    ${D.site.logo.name_plain}<span class="blue">${D.site.logo.name_highlight}</span>`;
+  const logo = D.site.logo;
+  let iconHTML;
+  if(logo.image_url){
+    // Use custom logo image
+    iconHTML = `<div class="logo-icon" style="width:${size}px;height:${size}px;background:transparent;padding:0">
+      <img src="${logo.image_url}" alt="${logo.name_plain}${logo.name_highlight}" style="width:100%;height:100%;object-fit:contain;border-radius:8px"/>
+    </div>`;
+  } else {
+    // Fallback to icon
+    iconHTML = `<div class="logo-icon" style="width:${size}px;height:${size}px;font-size:${size*.26}rem">
+      <i class="${logo.icon}"></i>
+    </div>`;
+  }
+  return `${iconHTML}${logo.name_plain}<span class="blue">${logo.name_highlight}</span>`;
 }
 
 /* ── NOTICE TICKER ── */
@@ -1408,9 +1423,7 @@ function renderStats(){
 /* ── FOOTER ── */
 function renderFooter(){
   const ft = D.footer;
-  document.getElementById('footerLogo').innerHTML = `
-    <div class="logo-icon"><i class="${D.site.logo.icon}"></i></div>
-    ${D.site.logo.name_plain}${D.site.logo.name_highlight}`;
+  document.getElementById('footerLogo').innerHTML = logoHTML(36);
   document.getElementById('footerDesc').textContent =
     currentLang==='bn' ? ft.description_bn : ft.description_en;
 
