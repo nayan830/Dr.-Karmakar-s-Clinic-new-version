@@ -92,6 +92,7 @@
       "address": "Joghpur Road, Loknath Nagar, Anulia, Ranaghat, Nadia",
       "address_note": "(After Anulia Hospital gate, beside the ice cream factory)",
       "phone": "6296680138",
+      "location": "https://google.com/maps/@23.165765,88.5533369,3a,75y,141.28h,86.22t/data=!3m7!1e1!3m5!1sbkf-VATd0SEwm7VlZSnZEg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D3.776152721040745%26panoid%3Dbkf-VATd0SEwm7VlZSnZEg%26yaw%3D141.2766445028289!7i16384!8i8192?entry=tts&g_ep=EgoyMDI2MDMxMC4wIPu8ASoASAFQAw%3D%3D&skid=5f37b784-b748-4e45-920e-ca76ae5fcce3",
       "schedule": {
         "1": [{"open": "11:00", "close": "14:00"}, {"open": "17:00", "close": "20:00"}],
         "3": [{"open": "11:00", "close": "14:00"}, {"open": "17:00", "close": "20:00"}],
@@ -110,6 +111,7 @@
       "address": "East side of Eruli Baganbari Mor (Dinuda's House)",
       "address_note": "",
       "phone": "6296680138",
+      "location": "https://google.com/maps/@23.165765,88.5533369,3a,75y,141.28h,86.22t/data=!3m7!1e1!3m5!1sbkf-VATd0SEwm7VlZSnZEg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D3.776152721040745%26panoid%3Dbkf-VATd0SEwm7VlZSnZEg%26yaw%3D141.2766445028289!7i16384!8i8192?entry=tts&g_ep=EgoyMDI2MDMxMC4wIPu8ASoASAFQAw%3D%3D&skid=5f37b784-b748-4e45-920e-ca76ae5fcce3",
       "schedule": {
         "2": [{"open": "11:00", "close": "16:00"}],
         "0": [{"open": "11:00", "close": "19:00"}]
