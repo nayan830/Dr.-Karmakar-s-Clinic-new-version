@@ -91,7 +91,6 @@ a{
 .notice-board{
   background:#fff;
   border-bottom:2px solid #e5e8ef;
-  /* left accent is now on the LABEL, not the board — no mobile overflow */
   width:100%;
   box-sizing:border-box;
   overflow:hidden;
@@ -137,7 +136,7 @@ a{
 .notice-ticker-inner{
   display:flex;align-items:center;
   white-space:nowrap;
-  animation:ticker 8s linear infinite;
+  animation:ticker 5s linear infinite;  /* speed increased to 5s */
   will-change:transform;
 }
 .notice-ticker-inner:hover{animation-play-state:paused}
@@ -972,7 +971,27 @@ header,.clinic-widget,.hero,
   .cw-divider{width:100%;height:1px;margin:0}
   .cw-clinic-block{min-width:unset}
   .cw-next-hint{text-align:left;margin-top:4px}
-  /* Notice — no special overrides needed; layout is already mobile-safe */
+
+  /* ── MOBILE NOTICE BOARD: smaller label ── */
+  .notice-ticker-label{
+    padding: 0 10px;
+    font-size: 0.6rem;
+    gap: 4px;
+  }
+  .notice-ticker-label i{
+    font-size: 0.8rem;
+  }
+  .ticker-item{
+    padding: 0 20px;
+    font-size: 0.75rem;
+  }
+  .ticker-sep{
+    padding: 0 6px;
+  }
+  /* ensure ticker animation works on mobile */
+  .notice-ticker-inner{
+    animation: ticker 5s linear infinite;  /* same speed */
+  }
 }
 </style>
 </head>
@@ -1260,12 +1279,9 @@ function logoHTML(size){
 
 /* ── NOTICE TICKER ── */
 function renderNoticeTicker(){
-  const speed = D.notice_board.ticker_speed_seconds;
-  // inject CSS speed
-  const style = document.createElement('style');
-  style.textContent = `.notice-ticker-inner{animation:ticker ${speed}s linear infinite}`;
-  document.head.appendChild(style);
-
+  // Speed set to 5s (faster) – ignoring data value for consistency
+  const speed = 5; 
+  // inject CSS speed (already set in CSS, but we can also update via style)
   // build double set for seamless loop
   const setHTML = D.notice_board.notices.map(n => `
     <span class="ticker-item">
